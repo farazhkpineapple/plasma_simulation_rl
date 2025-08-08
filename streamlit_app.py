@@ -45,7 +45,7 @@ if st.button("Run Simulation"):
     plot_placeholder = st.empty()
 
     # Initialize environment (same as test_plasma_env.py)
-    env = PlasmaEnv()
+    env = PlasmaEnv(interactive=False)
     obs, info = env.reset()
 
     # Show Non-RL confinement metric before visualization (like the TD3 flow)
@@ -138,7 +138,7 @@ if st.button("Run TD3 RL Simulation"):
         st.stop()
 
     # Create RL-enabled environment exactly as td3_test.py
-    env = PlasmaEnv(n_particles=25, rl_mode=True)
+    env = PlasmaEnv(n_particles=25, rl_mode=True, interactive=False)
     obs, info = env.reset()
 
     # Evaluate confinement exactly like td3_test.py (5 episodes, 100 steps)

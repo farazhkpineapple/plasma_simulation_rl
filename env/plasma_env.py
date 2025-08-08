@@ -14,13 +14,14 @@ class PlasmaEnv(gym.Env):
     """
     metadata = {"render_modes": ["human"]}
 
-    def __init__(self, n_particles=50, rl_mode=False):
+    def __init__(self, n_particles=50, rl_mode=False, interactive=True):
         super(PlasmaEnv, self).__init__()
 
         # Number of plasma particles to simulate the plasma ring
         self.n_particles = n_particles
         self.rl_mode = rl_mode  # Track if we're using RL control
         self.current_action = None  # Store current magnetic field action
+        self.interactive = interactive  # If False, avoid plt.show/draw/pause
         
         # --- State: average position and velocity of plasma ring ---
         # We'll track the center of mass and average velocity
@@ -161,9 +162,10 @@ class PlasmaEnv(gym.Env):
         if self.fig is None or self.ax is None:
             self.fig = plt.figure(figsize=(10, 8))
             self.ax = self.fig.add_subplot(111, projection='3d')
-            # Show the window immediately
-            plt.show(block=False)
-            plt.draw()
+            # Show the window immediately only in interactive mode
+            if self.interactive:
+                plt.show(block=False)
+                plt.draw()
 
         self.ax.clear()
         self.ax.set_xlim(-5, 5)
@@ -223,9 +225,10 @@ class PlasmaEnv(gym.Env):
             # Disabled arrows and |B| overlay per Streamlit app request
             pass
         
-        # Force the plot to update
-        plt.draw()
-        plt.pause(0.01)
+        # Force the plot to update (interactive sessions only)
+        if self.interactive:
+            plt.draw()
+            plt.pause(0.01)
 
     def _plot_torus_shell(self, ax, num_points=30):
         if ax is None:
