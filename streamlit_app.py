@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 import time
 from env.plasma_env import PlasmaEnv
+import os
 
 # Configure the page
 st.set_page_config(
@@ -29,11 +30,10 @@ st.write(
     "After trial and error, I switched to the TD3 algorithm, which is well-suited for chaotic, high-variance environments. "
     "Using a curriculum learning approach—starting with fewer particles and gradually increasing the count—helped the agent learn more effectively. "
     "While this simplified simulation cannot achieve perfect confinement, the results improved significantly: "
-    "from **66.7% ± 0.9% confinement without RL** to **84.8% ± 3.9% with the trained TD3 agent**. "
+    "from **66.7% ± 1.9% confinement without RL** to **84.8% ± 3.9% with the trained TD3 agent**. "
     "Below, I first show the simulation without any RL control, followed by the TD3-trained RL model actively working to contain the plasma. "
     "In real-world applications, both the physical models and control algorithms would be far more complex and precise."
 )
-
 st.divider()
 
 # Simple title
@@ -103,6 +103,9 @@ else:
 # --- RL (TD3) section ---
 st.divider()
 st.subheader("TD3 RL Simulation")
+
+# Guard to avoid training on Streamlit Cloud (inference-only)
+LOAD_ONLY = True
 
 # Run button first (kept the same, only changed the model-loaded message)
 if st.button("Run TD3 RL Simulation"):
