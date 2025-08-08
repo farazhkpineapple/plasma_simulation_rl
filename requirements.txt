@@ -1,0 +1,6 @@
+streamlit==1.36.0
+numpy>=1.26,<2.0
+matplotlib>=3.7,<3.9
+gymnasium==0.29.1
+stable-baselines3==2.3.0
+torch==2.2.2

@@ -1,0 +1,24 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+
+# OS
+.DS_Store
+
+# Environments
+.venv/
+.env/
+
+# Logs & TensorBoard
+logs/
+td3_curriculum_tensorboard/
+curriculum_tensorboard/
+sac_plasma_tensorboard/
+
+# Models: keep only Stage4 final model
+models/best_model.zip
+models/curriculum/
+models/td3_curriculum/Stage1_10particles/
+models/td3_curriculum/Stage2_15particles/
+models/td3_curriculum/Stage3_20particles/
+models/td3_curriculum/Stage4_25particles/best_model.zip
