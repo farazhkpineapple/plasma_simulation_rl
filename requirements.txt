@@ -10,4 +10,3 @@ torch==2.7.1
 
 # Dependencies
 cloudpickle==3.0.0
-scipy==1.13.0
