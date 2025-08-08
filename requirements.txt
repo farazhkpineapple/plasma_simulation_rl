@@ -8,6 +8,6 @@ shimmy==1.3.0
 stable-baselines3==2.3.2
 torch==2.7.1
 
-# Helpful/likely already used
+# Dependencies
 cloudpickle==3.0.0
 scipy==1.13.0
