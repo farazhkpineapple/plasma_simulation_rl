@@ -44,8 +44,8 @@ if st.button("Run Simulation"):
     # Placeholder for live plot
     plot_placeholder = st.empty()
 
-    # Initialize environment (same as test_plasma_env.py)
-    env = PlasmaEnv(interactive=False)
+    # Initialize environment with same particle count as RL (25 particles)
+    env = PlasmaEnv(n_particles=25, interactive=False)
     obs, info = env.reset()
 
     # Show Non-RL confinement metric before visualization (like the TD3 flow)
